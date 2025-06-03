@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "Player.h"
+#include "PlayerUI.h"
 
 class CommandHandler
 {

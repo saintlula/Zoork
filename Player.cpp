@@ -53,27 +53,6 @@ void Player::removeItem(const std::string& itemName)
   }
 }
 
-void Player::showInventory() const
-{
-  if (inventory.empty())
-  {
-    std::cout << "Your inventory is empty.\n";
-  }
-  else
-  {
-    std::cout << "Inventory:\n";
-    for (const auto& item : inventory)
-    {
-      std::cout << "~ " << item << "\n";
-    }
-  }
-}
-
-void Player::showHealth() const
-{
-  std::cout << "Your health is " << health << " HP!\n" << std::endl;
-}
-
 void Player::applyPoisonEffect()
 {
   if (isPoisoned)

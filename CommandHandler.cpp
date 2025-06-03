@@ -38,7 +38,7 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
     }
     else if (command == "inventory" || command == "i")
     {
-        player.showInventory();
+        PlayerUI::showInventory(player);
     }
     else if (command == "drop")
     {
@@ -60,7 +60,7 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
     }
     else if (command == "health" || command == "h")
     {
-        player.showHealth();
+        PlayerUI::showHealth(player);
     }
     else if (command == "use")
     {
