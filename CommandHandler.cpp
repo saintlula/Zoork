@@ -8,12 +8,22 @@
 
 CommandHandler::CommandHandler(Player& playerRef) : player(playerRef) {}
 
+std::string toLower(const std::string& input)
+{
+    std::string result = input;
+    for (char& c : result)
+    {
+        c = std::tolower(static_cast<unsigned char>(c));
+    }
+    return result;
+}
+
 void CommandHandler::handleCommand(const std::string& command, std::vector<std::string>& arguments, bool& playing, bool& playerLeftNursery)
 {
     if (command == "go")
     {
         handleGoCommand(arguments, playerLeftNursery);
-        player.applyPoisonEffect();
+        PlayerActions::applyPoisonEffect(player);
     }
     else if (command == "look")
     {
@@ -25,11 +35,11 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
     }
     else if (command == "open")
     {
-        player.openCase();
+        PlayerActions::openCase(player);
     }
     else if (command == "reveal")
     {
-        player.openChest();
+        PlayerActions::openChest(player);
     }
     else if (command == "quit")
     {
@@ -70,10 +80,10 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
         }
         else
         {
-            std::string item = arguments[0];
-            if (item == "Antidote")
+            std::string item = toLower(arguments[0]);
+            if (item == "antidote")
             {
-                player.useAntidote();
+                PlayerActions::useAntidote(player);
             }
             else
             {
@@ -131,3 +141,4 @@ void CommandHandler::printHelp() const
     std::cout << " quit             ~~ Teleports you to the exit door, so you can walk straight out and exit!\n";
     std::cout << " help             ~~ Shows this help message!\n";
 }
+

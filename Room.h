@@ -58,8 +58,6 @@ public:
     //Special additions
     void look(Player& player);
 
-    //Utility
-    void printInfo() const;
 };
 
 #endif //ROOM_H

@@ -35,6 +35,6 @@ Room* RoomConnections::getPassage(const std::string& direction)
     else
     {
         std::cout << "Seems you can't go that way!\n";
-        return nullptr; // Adjusted to nullptr; we will fix integration in Room after
+        return nullptr;
     }
 }

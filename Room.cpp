@@ -31,7 +31,7 @@ void Room::look(Player& player)
 
         if (choice == "yes")
         {
-            // Check if key is still in the room
+            //Checking if key is still in the room
             std::vector<std::string> roomItems = getItems();
             if (std::find(roomItems.begin(), roomItems.end(), "case key") == roomItems.end())
             {

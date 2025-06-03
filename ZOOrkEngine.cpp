@@ -22,12 +22,12 @@ void ZOOrkEngine::run() {
         std::string input;
         std::getline(std::cin, input);
 
-        // New check: if input empty AND player in Nursery, auto move west
+        //If input empty AND player in Nursery, auto move west
         if (input.empty() && player.getCurrentRoom()->getName() == "The Nursery")
         {
             std::vector<std::string> autoGo = {"west"};
             commandHandler.handleCommand("go", autoGo, playing, playerLeftNursery);
-            continue;  // skip normal command processing this iteration
+            continue;
         }
 
         std::vector<std::string> tokens = CommandParser::parseCommand(input);

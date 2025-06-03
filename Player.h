@@ -22,21 +22,15 @@ class Player
     void addToInventory(const std:: string& item);
     bool hasItem(const std::string& item) const;
     void removeItem(const std::string& itemName);
-   // void showInventory() const;
-    void openCase();
-    void openChest();
     int getHealth() const { return health; }
     void setHealth(int newHealth) { health = newHealth; }
-    //void showHealth() const;
-    void useAntidote();
-    void applyPoisonEffect();
     bool isPoisoned = false;
     int poisonTicksRemaining = 0;
     std::set<std::string> inventory;
+    bool chestOpened = false;
 
   private:
     Room* currentRoom;
-    bool chestOpened = false;
     int health = 100;
 };
 

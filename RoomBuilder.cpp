@@ -2,10 +2,10 @@
 // Created by Ehlinaz Duru Yildirim on 2/6/2025.
 //
 
-// RoomBuilder.cpp
+//RoomBuilder.cpp
 #include "RoomBuilder.h"
 
-// This function contains your entire room creation and connection code exactly as it was
+//Room bulding.
 Room* RoomBuilder::buildWorld()
 {
     Room* room1 = new Room(1, "The Foyer", "A small marble foyer with a dusty chandelier in the middle that barely flickers. ", false, "");
