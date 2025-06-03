@@ -6,6 +6,7 @@
 #include "PlayerUI.h"
 #include <iostream>
 
+//Displays the list of items in the player's inventory
 void PlayerUI::showInventory(const Player& player)
 {
     if (player.inventory.empty())
@@ -22,6 +23,7 @@ void PlayerUI::showInventory(const Player& player)
     }
 }
 
+//Displays the current health of the player
 void PlayerUI::showHealth(const Player& player)
 {
     std::cout << "Your health is " << player.getHealth() << " HP!\n" << std::endl;

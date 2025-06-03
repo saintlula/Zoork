@@ -1,13 +1,15 @@
 //
 // Created by Ehlinaz Duru Yildirim on 2/6/2025.
 //
-
+//commandHandler.cpp
 #include "CommandHandler.h"
 #include <iostream>
 #include <algorithm>
 
+//constructor that takes a reference to a Player object
 CommandHandler::CommandHandler(Player& playerRef) : player(playerRef) {}
 
+//the helper function to convert a string to lowercase
 std::string toLower(const std::string& input)
 {
     std::string result = input;
@@ -18,12 +20,13 @@ std::string toLower(const std::string& input)
     return result;
 }
 
+//main function that interprets and handles player commands
 void CommandHandler::handleCommand(const std::string& command, std::vector<std::string>& arguments, bool& playing, bool& playerLeftNursery)
 {
     if (command == "go")
     {
         handleGoCommand(arguments, playerLeftNursery);
-        PlayerActions::applyPoisonEffect(player);
+        PlayerActions::applyPoisonEffect(player); //Applying any poison effects after moving
     }
     else if (command == "look")
     {
@@ -44,7 +47,7 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
     else if (command == "quit")
     {
         std::cout << "You've been teleported to the exit door and you have walked out. Goodbye! For now!\n";
-        playing = false;
+        playing = false; // End the game loop
     }
     else if (command == "inventory" || command == "i")
     {
@@ -58,6 +61,7 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
         }
         else
         {
+            //Reconstruct full item name from arguments
             std::string itemName;
             for (size_t i = 0; i < arguments.size(); ++i)
             {
@@ -65,7 +69,7 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
                 if (i != arguments.size() - 1) itemName += " ";
             }
             std::transform(itemName.begin(), itemName.end(), itemName.begin(), ::tolower);
-            player.removeItem(itemName);
+            player.removeItem(itemName); //Attempt to drop the item
         }
     }
     else if (command == "health" || command == "h")
@@ -97,10 +101,12 @@ void CommandHandler::handleCommand(const std::string& command, std::vector<std::
     }
     else
     {
+        //Catch-all for unsupported commands
         std::cout << "Oof. The developer has not added this command! Please try again!\nFor the command list say 'help'";
     }
 }
 
+//handling movement commands such as "go north"
 void CommandHandler::handleGoCommand(std::vector<std::string>& arguments, bool& playerLeftNursery)
 {
     if (arguments.empty())
@@ -119,6 +125,7 @@ void CommandHandler::handleGoCommand(std::vector<std::string>& arguments, bool& 
     }
     else
     {
+        //tracking whether player has exited the nursery for the first time
         if (currentRoom->getName() == "The Nursery")
         {
             playerLeftNursery = true;
@@ -129,6 +136,7 @@ void CommandHandler::handleGoCommand(std::vector<std::string>& arguments, bool& 
     }
 }
 
+//this displays the list of available commands to the player
 void CommandHandler::printHelp() const
 {
     std::cout << "~~Available commands are~~\n";
